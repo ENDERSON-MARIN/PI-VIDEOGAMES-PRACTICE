@@ -33,14 +33,14 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
-      background_image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
+      },
+
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { timestamps: true }
