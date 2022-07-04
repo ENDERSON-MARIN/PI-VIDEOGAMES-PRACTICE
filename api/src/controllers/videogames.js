@@ -49,4 +49,9 @@ const getAllVideogamesById = async (req, res ) => {
     }
 };
 
+module.exports = {
+  getAllVideoGamesOrByName,
+  getAllVideogamesById
+}
+
 
