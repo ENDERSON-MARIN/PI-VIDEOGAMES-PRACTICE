@@ -66,12 +66,12 @@ const createVideogame = async (req, res) => {
     } = req.body;
     //CREO EL OBJETO DEL NUEVO VIDEOGAME.
     const newVideogame = await Videogame.create({
-      name,
-      description,
-      released,
-      rating,
-      platforms,
-      background_image,
+      name:name,
+      description:description,
+      released:released,
+      rating:rating,
+      platforms:platforms,
+      background_image:background_image,
     });
     // BUSCO DENTRO DEL MODELO DE GENEROS CUYOS NOMBRES COINCIDAN CON LOS QUE LES PASO DEL CLIENTE.
     let genresInDB = await Genre.findAll({
