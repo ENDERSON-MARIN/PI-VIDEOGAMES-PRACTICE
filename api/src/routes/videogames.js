@@ -2,6 +2,7 @@ const { Router } = require("express");
 const {
   getAllVideoGamesOrByName,
   getAllVideogamesById,
+  CreateVideogame
 } = require("../controllers/videogames");
 const {
   getVideogamesApi,
