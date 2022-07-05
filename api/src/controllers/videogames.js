@@ -138,8 +138,26 @@ const updateVideogame = async (req, res) => {
   }
 };
 
+/* DELETE VIDEOGAME IN THE DB */
+const deleteVideogame = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const videogameDb = await Videogame.findByPk(id);
+    if (!videogameDb) {
+      return res.status(400).send("Videogame not found!");
+    } else {
+      await videogameDb.destroy();
+      return res.send("Videogame deleted Successfully!");
+    }
+  } catch (error) {
+    res.status(400).send({ errMsg: err });
+  }
+};
+
 module.exports = {
   getAllVideoGamesOrByName,
   getAllVideogamesById,
   createVideogame,
+  updateVideogame,
+  deleteVideogame
 };
