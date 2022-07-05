@@ -62,67 +62,69 @@ const getVideogamesDb = async () => {
 /* GET ALL VIDEOGAMES FROM API AND DB */
 
 const getAllGames = async () => {
-  try{
-      const gamesApi = await getVideogamesApi();
-      const gamesDb = await getVideogamesDb();
-      const allGames = [...gamesApi, ...gamesDb];
-      // console.log( `all games = ${allGames}`)
-      return allGames;
-  }catch(err){
-      console.log(err);
+  try {
+    const gamesApi = await getVideogamesApi();
+    const gamesDb = await getVideogamesDb();
+    const allGames = [...gamesApi, ...gamesDb];
+    // console.log( `all games = ${allGames}`)
+    return allGames;
+  } catch (err) {
+    console.log(err);
   }
 };
 
 /* GET ONE VIDEOGAME API BY ID  */
 
 const getVideogamesApiById = async (id) => {
-  try{
-      const game = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-      const videogame = {
-          id: game.data.id,
-          name: game.data.name,
-          rating: game.data.rating,
-          released: game.released,
-          image: game.data.background_image,
-          genres: game.data.genres.map(g => g.name),
-          platforms: game.data.parent_platforms.map(p => p.platform.name),
-          description: game.data.description,
-      };
-      return videogame;
-
-  } catch(err){
-      console.log(err);
+  try {
+    const game = await axios.get(
+      `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+    );
+    const videogame = {
+      id: game.data.id,
+      name: game.data.name,
+      rating: game.data.rating,
+      released: game.released,
+      background_image: game.data.background_image,
+      genres: game.data.genres.map((g) => g.name),
+      platforms: game.data.parent_platforms.map((p) => p.platform.name),
+      description: game.data.description,
+    };
+    return videogame;
+  } catch (err) {
+    console.log(err);
   }
 };
 
 /* GET GENRES FROM API AND STORE IN DB */
 
 const getGenresApiDb = async () => {
-  try{
-      const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+  try {
+    const genresApi = await axios.get(
+      `https://api.rawg.io/api/genres?key=${API_KEY}`
+    );
 
-      const genresApiName = genresApi.data.results.map((g) => {
-        return { name : g.name };
-      }) 
-      let genresDb = await Genre.findAll();
-      if (genresDb.length === 0) {
-          await Genre.bulkCreate(genresApiName)
-      }
-  }catch (err){
-      console.log(err);
+    const genresApiName = genresApi.data.results.map((g) => {
+      return { name: g.name };
+    });
+    let genresDb = await Genre.findAll();
+    if (genresDb.length === 0) {
+      await Genre.bulkCreate(genresApiName);
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
 /* GET ALL GENRES FROM DB */
 
-const getGenresFromDb = async () =>{
-  try{
-      let genresFromDb = await Genre.findAll();
-      genresFromDb = genresFromDb.map(g => g.toJSON());
-      return genresFromDb;
-
-  }catch(err){
-      console.log(err)
+const getGenresFromDb = async () => {
+  try {
+    let genresFromDb = await Genre.findAll();
+    genresFromDb = genresFromDb.map((g) => g.toJSON());
+    return genresFromDb;
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -132,5 +134,5 @@ module.exports = {
   getAllGames,
   getVideogamesApiById,
   getGenresApiDb,
-  getGenresFromDb
-}
+  getGenresFromDb,
+};
