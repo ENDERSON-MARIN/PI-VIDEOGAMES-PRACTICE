@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const genres = require("./genres.js");
-const videogames = require("./videogames.js");
+const genres = require("./genres");
+const videogames = require("./videogames");
 
 const router = Router();
 
