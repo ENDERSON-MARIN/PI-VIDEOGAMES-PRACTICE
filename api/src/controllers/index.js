@@ -84,7 +84,7 @@ const getVideogamesApiById = async (id) => {
       id: game.data.id,
       name: game.data.name,
       rating: game.data.rating,
-      released: game.released,
+      released: game.data.released,
       background_image: game.data.background_image,
       genres: game.data.genres.map((g) => g.name),
       platforms: game.data.parent_platforms.map((p) => p.platform.name),
@@ -108,7 +108,7 @@ const getGenresApiDb = async () => {
       return { name: g.name };
     });
     let genresDb = await Genre.findAll();
-    if (genresDb.length === 0) {
+    if (genresDb.length === 0) {//SI NO EXISTEN GENEROS EN LA DB, LOS CREO CON LOS DE LA API
       await Genre.bulkCreate(genresApiName);
     }
   } catch (err) {
