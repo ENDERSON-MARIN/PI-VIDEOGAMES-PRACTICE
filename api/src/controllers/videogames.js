@@ -66,12 +66,12 @@ const createVideogame = async (req, res) => {
     } = req.body;
     //CREO EL OBJETO DEL NUEVO VIDEOGAME.
     const newVideogame = await Videogame.create({
-      name:name,
-      description:description,
-      released:released,
-      rating:rating,
-      platforms:platforms,
-      background_image:background_image,
+      name,
+      description,
+      released,
+      rating,
+      platforms,
+      background_image,
     });
     // BUSCO DENTRO DEL MODELO DE GENEROS CUYOS NOMBRES COINCIDAN CON LOS QUE LES PASO DEL CLIENTE.
     let genresInDB = await Genre.findAll({
@@ -111,15 +111,14 @@ const updateVideogame = async (req, res) => {
         id: id,
       },
     });
-
-    //if (!videogameDb) throw new Error("Videogame not Found!");
+    /* ACTUALIZO EL VIDEOGAME CON LOS DATOS QUE ME PASEN POR BODY */
     await videogameDb.update({
-      name: name,
-      description: description,
-      released: released,
-      rating: rating,
-      platforms: platforms,
-      background_image: background_image,
+      name,
+      description,
+      released,
+      rating,
+      platforms,
+      background_image,
     });
 
     // BUSCO DENTRO DEL MODELO DE GENEROS CUYOS NOMBRES COINCIDAN CON LOS QUE LES PASO DEL CLIENTE.
@@ -131,7 +130,7 @@ const updateVideogame = async (req, res) => {
       },
     });
     //AGREGO LOS GENEROS AL OBJETO DE videogameDb
-    await videogameDb.addGenres(genresInDB);
+    await videogameDb.setGenres(genresInDB);
     res.status(200).send(videogameDb);
   } catch (error) {
     res.status(400).send(error);
@@ -142,15 +141,15 @@ const updateVideogame = async (req, res) => {
 const deleteVideogame = async (req, res) => {
   try {
     const { id } = req.params;
-    const videogameDb = await Videogame.findByPk(id);
-    if (!videogameDb) {
+    const juego = await Videogame.findByPk(id);
+    if (juego === null) {
       return res.status(400).send("Videogame not found!");
     } else {
-      await videogameDb.destroy();
+      await juego.destroy();
       return res.send("Videogame deleted Successfully!");
     }
   } catch (error) {
-    res.status(400).send({ errMsg: err });
+    res.status(400).send({ errMsg: error });
   }
 };
 
@@ -159,5 +158,5 @@ module.exports = {
   getAllVideogamesById,
   createVideogame,
   updateVideogame,
-  deleteVideogame
+  deleteVideogame,
 };
