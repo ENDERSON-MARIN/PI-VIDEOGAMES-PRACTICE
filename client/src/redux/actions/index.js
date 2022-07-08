@@ -24,7 +24,7 @@ export function getAllVideogames() {
         payload: videogames.data,
       });
     } catch (error) {
-      console.log({ msg: `An error has occurred ${error}` });
+      console.log(error);
     }
   };
 }
