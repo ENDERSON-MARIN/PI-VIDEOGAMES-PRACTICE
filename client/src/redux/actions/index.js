@@ -112,7 +112,7 @@ export function getVideogamesById(id) {
 export function getVideogamesByGenres() {
   return async function (dispatch) {
     try {
-      gamesGenres = await axios.get("/genres");
+      const gamesGenres = await axios.get("/genres");
       return dispatch({
         type: GET_ALL_GENRES,
         payload: gamesGenres.data,
