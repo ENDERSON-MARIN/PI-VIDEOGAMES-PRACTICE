@@ -141,11 +141,11 @@ const updateVideogame = async (req, res) => {
 const deleteVideogame = async (req, res) => {
   try {
     const { id } = req.params;
-    const juego = await Videogame.findByPk(id);
-    if (juego === null) {
+    const game = await Videogame.findByPk(id);
+    if (game === null) {
       return res.status(400).send("Videogame not found!");
     } else {
-      await juego.destroy();
+      await game.destroy();
       return res.send("Videogame deleted Successfully!");
     }
   } catch (error) {

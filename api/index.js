@@ -3,7 +3,7 @@ const server = require('./src/app.js');
 const { database } = require('./src/db.js');
 require("dotenv").config(); //para leer las variables de entorno
 
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
 const DB_PORT = process.env.DB_PORT || 5432;
 
 
