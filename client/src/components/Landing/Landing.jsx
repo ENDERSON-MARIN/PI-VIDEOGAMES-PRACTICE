@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { BgContainer, StartButton } from "./styles";
 import bgImage from "../../images/landing.jpg";
 

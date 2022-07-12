@@ -8,7 +8,7 @@ function Home() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllVideogames());
-  }, []);
+  }, [dispatch]);
   console.log(videogames);
   return (
     <div>
