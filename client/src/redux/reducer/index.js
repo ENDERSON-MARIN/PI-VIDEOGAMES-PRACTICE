@@ -74,7 +74,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case FILTER_BY_GENRES:
       return {
         ...state,
-        copyVideogames: filterByGenres(
+        videogamesCopy: filterByGenres(
           payload["genres"],
           payload["existence"] === "API"
             ? state.videogamesApi
@@ -86,17 +86,17 @@ function rootReducer(state = initialState, { type, payload }) {
     case FILTER_BY_EXISTENCE:
       return {
         ...state,
-        copyVideogames: filterByExistence(payload, state.videogames),
+        videogamesCopy: filterByExistence(payload, state.videogames),
       };
     case ORDER_BY_ALPHABETICAL:
       return {
         ...state,
-        copyVideogames: orderByAlphabetic(payload, state.videogames),
+        videogamesCopy: orderByAlphabetic(payload, state.videogames),
       };
     case ORDER_BY_RATING:
       return {
         ...state,
-        copyVideogames: orderByRating(payload, state.videogames),
+        videogamesCopy: orderByRating(payload, state.videogames),
       };
 
     default:
