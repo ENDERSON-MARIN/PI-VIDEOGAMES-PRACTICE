@@ -38,8 +38,3 @@
   color: var(--color-white);
 }
 
-@media screen and (max-width: 1052px) {
-  .numBtn {
-    padding: 7px 10px;
-  }
-}

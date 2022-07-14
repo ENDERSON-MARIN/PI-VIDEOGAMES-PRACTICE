@@ -91,15 +91,3 @@
   color: rgb(255, 255, 255);
   font-size: 25px;
 }
-
-@media screen and (max-width: 1052px) {
-  .navbar {
-    padding: 10px 40px 10px 0px;
-  }
-  .logo {
-    display: none;
-  }
-  .items {
-    flex: 4;
-  }
-}

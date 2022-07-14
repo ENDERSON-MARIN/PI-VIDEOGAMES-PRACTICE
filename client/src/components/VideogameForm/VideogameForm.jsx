@@ -8,8 +8,7 @@ import {
   getVideogamesByGenres,
   getVideogamesById,
   createVideogame,
-  updateVideogame
-
+  updateVideogame,
 } from "../../redux/actions/index";
 
 //--CREATE NEW GAME--//
@@ -156,7 +155,7 @@ const VideogameForm = () => {
       });
     }
   }
-  
+
   function handleGenres(e) {
     console.log(e.target.value);
     if (e.target.checked) {
@@ -199,42 +198,18 @@ const VideogameForm = () => {
         >
           <ul className={Style.noBullet}>
             <li>
-              <label>NAME:</label>
-              <input
-                required
-                type="text"
-                maxlength="15"
-                className={Style.inputFields}
-                name="name"
-                placeholder="Game Name"
-                value={dataState.name}
-                onChange={(e) => handleUpdate(e)}
-              />
-            </li>
-            <li>
-              <label>DESCRIPTION:</label>
-              <input
-                required
-                type="text"
-                maxlength="50"
-                className={Style.inputFields}
-                name="description"
-                placeholder="Description"
-                value={dataState.description}
-                onChange={(e) => handleUpdate(e)}
-              />
-            </li>
-            <li>
-              <label>RELEASED DATE:</label>
-              <input
-                required
-                type="date"
-                className={Style.inputFields}
-                name="released"
-                placeholder="Released date"
-                value={dataState.released}
-                onChange={(e) => handleUpdate(e)}
-              />
+              <label>
+                NAME:
+                <input
+                  required
+                  type="text"
+                  className={Style.inputFields}
+                  name="name"
+                  placeholder="Game Name"
+                  value={dataState.name}
+                  onChange={(e) => handleUpdate(e)}
+                />
+              </label>
             </li>
 
             <li>
@@ -249,6 +224,20 @@ const VideogameForm = () => {
                 onChange={(e) => handleUpdate(e)}
               />
             </li>
+
+            <li>
+              <label>RELEASED DATE:</label>
+              <input
+                required
+                type="date"
+                className={Style.inputFields}
+                name="released"
+                placeholder="Released date"
+                value={dataState.released}
+                onChange={(e) => handleUpdate(e)}
+              />
+            </li>
+
             <li>
               <label>RATING:{dataState.rating}</label>
               <input
@@ -257,11 +246,27 @@ const VideogameForm = () => {
                 className={Style.inputFields}
                 max="5"
                 min="1"
+                step="0.01"
                 name="rating"
                 value={dataState.rating}
                 onChange={(e) => handleUpdate(e)}
               />
             </li>
+
+            <li>
+              <label>DESCRIPTION:</label>
+              <textarea
+                required
+                rows="6"
+                cols="30"
+                className={Style.inputFields}
+                name="description"
+                placeholder="Description videogame"
+                value={dataState.description}
+                onChange={(e) => handleUpdate(e)}
+              ></textarea>
+            </li>
+
             <li>
               <label className={Style.container} id="genres">
                 {" "}

@@ -65,11 +65,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 1100px;
-  height: 710px;
+  height: 780px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -84,17 +84,16 @@
 }
 .info h2 {
   background-color: rgba(0, 0, 0, 0.447);
-  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
   padding-top: 30px;
   font-weight: 700;
 }
 
 .signupForm {
-  width: 60%;
-  padding: 18px 0;
+  width: 70%;
   background: rgba(16, 16, 16, 0.803);
   transition: 0.2s;
   border: 10px;
+  padding: 10px;
 }
 .signupForm h2 {
   font-weight: 300;
@@ -104,18 +103,19 @@
   border-radius: 10px;
   margin: 10px 5px;
   font-size: 16px;
-  padding: 12px;
-  width: 230px;
-  border: 2px solid rgb(200, 0, 255);
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  padding: 8px;
+  width: 600px;
+  border: solid 1px var(--color-primary);
   background: rgba(244, 241, 241, 0.098);
   color: rgb(255, 253, 253);
   outline: none;
 }
 .noBullet {
   list-style-type: none;
+}
+
+.noBullet textarea {
+  resize: none;
 }
 
 /* SELECTS */
@@ -304,74 +304,4 @@
   span:nth-child(2) {
   transition: none;
   transition-delay: none;
-}
-
-/* @MEDIA */
-
-@media screen and (max-width: 1052px) {
-  .signupSection {
-    font-size: 10px;
-    top: 20%;
-    left: 60%;
-    transform: translate(-50%, -30%);
-    width: 500px;
-    height: 400px;
-  }
-
-  .signupForm {
-    width: 92%;
-    padding: 2px;
-  }
-  .inputFields {
-    border-radius: 5px;
-    margin: 5px 1px;
-    font-size: 8px;
-    padding: 2px;
-    width: 75px;
-  }
-
-  .align {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
-  }
-
-  /* CHECKBOX @MEDIA*/
-
-  .input[type="checkbox"] {
-    height: 0.5rem;
-    width: 0.5rem;
-    margin: 3px;
-    display: inline-block;
-    appearance: none;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-  }
-
-  .input[type="checkbox"]::after {
-    /* content: '';
- display: block; */
-    height: 0.4rem;
-    width: 0.2rem;
-    border-bottom: 0.15rem solid #000000;
-    border-right: 0.15rem solid #000000;
-    position: absolute;
-    top: 40%;
-    left: 15%;
-  }
-
-  .nameGenre {
-    font-size: 0.8rem;
-  }
-
-  .createBtn {
-    font-size: 10px;
-  }
-
-  .alert {
-    font-size: 7px;
-  }
 }

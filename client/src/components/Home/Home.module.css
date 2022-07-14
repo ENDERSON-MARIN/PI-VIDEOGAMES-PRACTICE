@@ -19,7 +19,7 @@
   color: white;
   padding: 5px;
   margin: 5px;
-  width: 150px;
+  width: 250px;
   border: none;
   border-radius: 5px;
   font-size: 15px;
@@ -27,6 +27,7 @@
   -webkit-appearance: button;
   appearance: button;
   outline: none;
+  text-align: center;
 }
 
 .paginationBox {
@@ -39,14 +40,6 @@
   padding: 5px;
 }
 
-@media screen and (max-width: 1052px) {
-  .box select {
-    padding: 7px 10px;
-    width: 65px;
-    height: 15px;
-    font-size: 5px;
-  }
-}
 
 .reloadBtnContainer {
   display: flex;
