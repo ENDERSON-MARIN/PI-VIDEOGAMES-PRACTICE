@@ -16,7 +16,7 @@ const getVideogamesApi = async () => {
           name: e.name,
           rating: e.rating,
           released: e.released,
-          image: e.background_image,
+          background_image: e.background_image,
           genres: e.genres.map((genre) => genre.name),
           platforms: e.platforms.map((platform) => platform.platform.name),
         });
@@ -47,7 +47,7 @@ const getVideogamesDb = async () => {
         name: g.dataValues.name,
         rating: g.dataValues.rating,
         released: g.dataValues.released,
-        image: g.dataValues.background_image,
+        background_image: g.dataValues.background_image,
         genres: g.dataValues.genres.map((g) => g.dataValues.name),
         platforms: g.dataValues.platforms,
         description: g.dataValues.description,
