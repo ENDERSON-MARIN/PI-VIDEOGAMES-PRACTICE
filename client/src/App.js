@@ -1,15 +1,23 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Landing from "./components/Landing/Landing";
+import Welcome from "./components/Welcome/Welcome.jsx";
+import Home from "./components/Home/Home.jsx";
+import NotFound from "./components/NotFound/NotFound.jsx";
+import VideogameDetail from "./components/VideogameDetail/VideogameDetail.jsx";
+import VideogameCreate from "./components/VideogameForm/VideogameForm.jsx";
+
+
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/home" element={<Home />} />
+          <Route exact path="/" element={<Welcome />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/videogames/:id" element={<VideogameDetail />} />
+          <Route exact path="/videogame/create" element={<VideogameCreate />} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,24 +8,24 @@ const getVideogamesApi = async () => {
   try {
     const videogames = [];
     let callApi = `https://api.rawg.io/api/games?key=${API_KEY}`;
-    for (let i = 1; i <= 7; i++) {
-      let gamesPaginated = await axios.get(callApi);
-      gamesPaginated.data?.results.forEach((e) => {
+    for (let i = 1; i <= 5; i++) {
+      let gamesTotal = await axios.get(callApi);
+      gamesTotal.data?.results.forEach((e) => {
         videogames.push({
           id: e.id,
           name: e.name,
           rating: e.rating,
           released: e.released,
-          image: e.background_image,
+          background_image: e.background_image,
           genres: e.genres.map((genre) => genre.name),
           platforms: e.platforms.map((platform) => platform.platform.name),
         });
       });
-      callApi = gamesPaginated.data.next;
+      callApi = gamesTotal.data.next;
     }
     return videogames;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -47,15 +47,15 @@ const getVideogamesDb = async () => {
         name: g.dataValues.name,
         rating: g.dataValues.rating,
         released: g.dataValues.released,
-        image: g.dataValues.background_image,
+        background_image: g.dataValues.background_image,
         genres: g.dataValues.genres.map((g) => g.dataValues.name),
         platforms: g.dataValues.platforms,
         description: g.dataValues.description,
       };
     });
     return gamesWithGenres;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -68,8 +68,8 @@ const getAllGames = async () => {
     const allGames = [...gamesApi, ...gamesDb];
     // console.log( `all games = ${allGames}`)
     return allGames;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -86,13 +86,13 @@ const getVideogamesApiById = async (id) => {
       rating: game.data.rating,
       released: game.data.released,
       background_image: game.data.background_image,
+      description: game.data.description,
       genres: game.data.genres.map((g) => g.name),
       platforms: game.data.parent_platforms.map((p) => p.platform.name),
-      description: game.data.description,
     };
     return videogame;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -108,11 +108,12 @@ const getGenresApiDb = async () => {
       return { name: g.name };
     });
     let genresDb = await Genre.findAll();
-    if (genresDb.length === 0) {//SI NO EXISTEN GENEROS EN LA DB, LOS CREO CON LOS DE LA API
+    if (genresDb.length === 0) {
+      //SI NO EXISTEN GENEROS EN LA DB, LOS CREO CON LOS DE LA API
       await Genre.bulkCreate(genresApiName);
     }
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -123,8 +124,8 @@ const getGenresFromDb = async () => {
     let genresFromDb = await Genre.findAll();
     genresFromDb = genresFromDb.map((g) => g.toJSON());
     return genresFromDb;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 

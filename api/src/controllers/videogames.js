@@ -30,6 +30,7 @@ const getAllVideoGamesOrByName = async (req, res) => {
   }
 };
 
+
 /* GET ONE VIDEOGAME BY ID FROM DB OR API */
 
 const getAllVideogamesById = async (req, res) => {
