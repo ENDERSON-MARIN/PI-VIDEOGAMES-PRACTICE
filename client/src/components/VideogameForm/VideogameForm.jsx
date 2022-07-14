@@ -5,18 +5,19 @@ import { useParams } from "react-router-dom";
 import Style from "./VideogameForm.module.css";
 
 import {
-  getByGenres,
-  getGameId,
-  postVideogame,
-  updateVideogame,
-} from "../../actions/actions";
+  getVideogamesByGenres,
+  getVideogamesById,
+  createVideogame,
+  updateVideogame
+
+} from "../../redux/actions/index";
 
 //--CREATE NEW GAME--//
-const GameCreateForm = () => {
+const VideogameForm = () => {
   const dispatch = useDispatch();
   const [validator, setValidator] = useState("");
   const { id } = useParams();
-  const gameUpdate = useSelector((state) => state.copyVideogames);
+  const videogameUpdate = useSelector((state) => state.copyVideogames);
   const genres = useSelector((state) => state.genres);
   const [updated, setUpdated] = useState(false);
   // const navigate = useNavigate();
@@ -53,8 +54,8 @@ const GameCreateForm = () => {
 
   useEffect(() => {
     //get Genres & dispatch get games by id
-    dispatch(getByGenres());
-    id && dispatch(getGameId(id));
+    dispatch(getVideogamesByGenres());
+    id && dispatch(getVideogamesById(id));
   }, [dispatch, id]);
 
   // set the form state
@@ -99,7 +100,7 @@ const GameCreateForm = () => {
     } else {
       if (dataState.name) {
         if (!id) {
-          dispatch(postVideogame(dataState));
+          dispatch(createVideogame(dataState));
           alert("Game created successfully");
         } else {
           dispatch(updateVideogame(id, dataState));
@@ -119,16 +120,16 @@ const GameCreateForm = () => {
       document.getElementById("form").reset();
     }
   }
-  if (id && gameUpdate.name && !updated) {
+  if (id && videogameUpdate.name && !updated) {
     setDataState({
       ...dataState,
-      name: gameUpdate.name,
-      description: gameUpdate.description,
-      released: gameUpdate.released,
-      rating: gameUpdate.rating,
-      platforms: gameUpdate.platforms,
-      background_image: gameUpdate.background_image,
-      genres: gameUpdate.genres,
+      name: videogameUpdate.name,
+      description: videogameUpdate.description,
+      released: videogameUpdate.released,
+      rating: videogameUpdate.rating,
+      platforms: videogameUpdate.platforms,
+      background_image: videogameUpdate.background_image,
+      genres: videogameUpdate.genres,
     });
     setDataState(!updated);
   }
@@ -315,7 +316,7 @@ const GameCreateForm = () => {
                 <span></span>
                 <span></span>
                 <span></span>
-                <span></span>CREATE
+                <span></span>CREATE NEW VIDEOGAME
               </button>
             </li>
           </ul>
@@ -325,4 +326,4 @@ const GameCreateForm = () => {
   );
 };
 
-export default GameCreateForm;
+export default VideogameForm;

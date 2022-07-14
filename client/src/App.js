@@ -4,6 +4,7 @@ import Welcome from "./components/Welcome/Welcome.jsx";
 import Home from "./components/Home/Home.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import VideogameDetail from "./components/VideogameDetail/VideogameDetail.jsx";
+import VideogameCreate from "./components/VideogameForm/VideogameForm.jsx";
 
 
 
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" element={<Welcome />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/videogames/:id" element={<VideogameDetail />} />
+          <Route exact path="/videogame/create" element={<VideogameCreate />} />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
