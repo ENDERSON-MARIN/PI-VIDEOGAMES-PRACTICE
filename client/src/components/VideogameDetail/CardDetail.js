@@ -69,9 +69,9 @@ export const GameDetailOthers = styled.p`
   display: flex;
   padding: 10px;
   margin: 5px;
-  border: 1px solid black;
+  border-radius:15px;
   color: var(--color-light);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-variant);
 `;
 
 export const GameDetailLabel = styled.span`
