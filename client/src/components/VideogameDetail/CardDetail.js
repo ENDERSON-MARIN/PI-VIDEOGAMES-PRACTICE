@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const GameDetailWrapper = styled.div`
-  width: 60%;
+  width: 55%;
   border: 1px solid var(--color-pagination);
   border-radius: 25px;
   position: absolute;
@@ -15,7 +15,7 @@ export const GameDetailWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top:10px;
+  margin-top: 10px;
 
   @media (max-width: 800px) {
     font-size: 12px;
@@ -23,24 +23,25 @@ export const GameDetailWrapper = styled.div`
 `;
 
 export const GameDetailTitle = styled.h2`
-  font-size: 30px;
-  font-weight: 500;
-  font-family:  "Arial Narrow Bold", sans-serif;
+  font-size: 25px;
+  font-weight: 300;
   justify-content: center;
   display: flex;
   color: white;
 `;
 
 export const GameDetailImg = styled.img`
-  width: 40vw;
-  height: auto;
+  width: 640px;
+  height: 400px;
+  border-radius: 25px;
+  margin: 15px;
 `;
 
 export const GameDetailDescription = styled.p`
-  color: whitesmoke;
+  color: #ffffff;
   font-size: 15px;
   text-align: justify;
-  font-weight: 200;
+  font-weight: 300;
   width: 50vw;
 
   @media (max-width: 800px) {
@@ -50,12 +51,10 @@ export const GameDetailDescription = styled.p`
 
 export const GameDetailWrapperOthers = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-auto-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas: ". . .";
+  grid-auto-rows: 1fr 1fr;
+  gap: 0.5px 0.5px;
   width: 50vw;
 
   @media (max-width: 800px) {
@@ -66,9 +65,11 @@ export const GameDetailWrapperOthers = styled.div`
 export const GameDetailOthers = styled.p`
   justify-content: center;
   display: flex;
-  padding-top: 10px;
+  padding: 10px;
+  margin: 5px;
   border: 1px solid black;
-  background-color: antiquewhite;
+  color: white;
+  background-color: var(--color-bg);
 `;
 
 export const GameDetailLabel = styled.span`
