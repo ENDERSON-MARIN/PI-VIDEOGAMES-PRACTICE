@@ -36,7 +36,7 @@ const NavBar = ({ onSearch }) => {
 
           <div className={Style.items}>
             <li>
-              <NavLink to="/videogame/create" className={Style.penLink}>
+              <NavLink to="/videogamesCreate" className={Style.penLink}>
                 <button className={Style.btnCreate}>Create Videogame!</button>
               </NavLink>
             </li>

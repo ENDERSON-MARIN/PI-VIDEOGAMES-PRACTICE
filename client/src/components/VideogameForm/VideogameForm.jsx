@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useNavigate , NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Style from "./VideogameForm.module.css";
+
+import Swal from "sweetalert2";
 
 import {
   getVideogamesByGenres,
@@ -16,10 +18,10 @@ const VideogameForm = () => {
   const dispatch = useDispatch();
   const [validator, setValidator] = useState("");
   const { id } = useParams();
-  const videogameUpdate = useSelector((state) => state.copyVideogames);
+  const videogameUpdate = useSelector((state) => state.videogamesCopy);
   const genres = useSelector((state) => state.genres);
   const [updated, setUpdated] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   let Platforms = [
     "PC",
     "PlayStation",
@@ -39,16 +41,7 @@ const VideogameForm = () => {
     "Atari",
     "Genesis",
     "SEGA",
-    "Dreamcast",
-    "3DO",
-    "Jaguar",
-    "Game Gear",
-    "Neo Geo",
-    "PS5",
-    "PS4",
-    "PS3",
-    "PS2",
-    "PS1",
+    "Dreamcast"
   ];
 
   useEffect(() => {
@@ -100,10 +93,24 @@ const VideogameForm = () => {
       if (dataState.name) {
         if (!id) {
           dispatch(createVideogame(dataState));
-          alert("Game created successfully");
+          Swal.fire({
+            title: "Created!",
+            text: "Videogame created successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "green",
+            timer: "3000",
+          });
         } else {
           dispatch(updateVideogame(id, dataState));
-          alert("Game updated successfully");
+          Swal.fire({
+            title: "Updated!",
+            text: "Videogame updated successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "green",
+            timer: "3000",
+          });
         }
       }
       setValidator("");
@@ -117,6 +124,7 @@ const VideogameForm = () => {
         genres: [],
       });
       document.getElementById("form").reset();
+      navigate("/home");
     }
   }
   if (id && videogameUpdate.name && !updated) {
@@ -142,7 +150,7 @@ const VideogameForm = () => {
   };
 
   function handlePlatforms(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     if (e.target.checked) {
       setDataState({
         ...dataState,
@@ -157,7 +165,7 @@ const VideogameForm = () => {
   }
 
   function handleGenres(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     if (e.target.checked) {
       setDataState({
         ...dataState,
@@ -176,17 +184,17 @@ const VideogameForm = () => {
       <div className={Style.btnAlign}>
         <NavLink to="/home">
           <button className={Style.backBtn}>
-            <span className={Style.buttonTop}>BACK HOME</span>
+            <span className={Style.buttonTop}>GO BACK HOME</span>
           </button>
         </NavLink>
       </div>
       {id ? (
         <div className={Style.titleAling}>
-          <h2 className="update">UPDATE GAME</h2>
+          <h2 className="update">UPDATE VIDEOGAME</h2>
         </div>
       ) : (
         <div className={Style.titleAling}>
-          <h2 className="create">CREATE YOUR GAME!</h2>
+          <h2 className="create">CREATE NEW GAME</h2>
         </div>
       )}
 
@@ -321,7 +329,7 @@ const VideogameForm = () => {
                 <span></span>
                 <span></span>
                 <span></span>
-                <span></span>CREATE NEW VIDEOGAME
+                <span></span>SUBMIT VIDEOGAME!
               </button>
             </li>
           </ul>
