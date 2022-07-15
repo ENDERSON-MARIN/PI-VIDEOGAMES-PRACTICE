@@ -1,43 +1,41 @@
-import Style from "./CardDetail.module.css";
+import {
+  GameDetailWrapper,
+  GameDetailImg,
+  GameDetailDescription,
+  GameDetailTitle,
+  GameDetailWrapperOthers,
+  GameDetailOthers,
+  Wrapper,
+} from "./CardDetail.js";
 
 const CardDetail = ({ game }) => {
   console.log(game);
   return (
-    <div>
-      <div>
-        {game && (
-          <div className={Style.container}>
-            <div className={Style.containerText}>
-              <p>
-                <b>Name: </b>
-                {game.name}
-              </p>
-              <p>
-                <b>⭐ Rating: </b>
-                {game.rating}
-              </p>
-              <p>
-                <b> 📆Released: </b>
-                {game.released}
-              </p>
-              <p>
-                <strong>🏹Genres: </strong>
-                {game.genres}
-              </p>
-              <p>
-                <strong>👾Platforms: </strong>
-                {game.platforms}
-              </p>
-            </div>
-
-            <div className={Style.contDescription}>
-              <h3 className={Style.titleDescription}>📖Description:</h3>
-              <p dangerouslySetInnerHTML={{ __html: game.description }} />
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+    <Wrapper>
+      <GameDetailWrapper>
+        <GameDetailTitle>{game.name}</GameDetailTitle>
+        <GameDetailImg src={game.background_image} alt="Game" />
+        <GameDetailWrapperOthers>
+          <GameDetailOthers>
+            Release date:
+            {game.released ? game.released : "N/A"}
+          </GameDetailOthers>
+          <GameDetailOthers>
+            Rating:
+            {game.rating ? game.rating : "N/A"}
+          </GameDetailOthers>
+          <GameDetailOthers>
+            Genres:
+            {game.genres}
+          </GameDetailOthers>
+          <GameDetailOthers>
+            Platforms:
+            {game.platforms ? game.platforms : "N/A"}
+          </GameDetailOthers>
+        </GameDetailWrapperOthers>
+        <GameDetailDescription>{game.description}</GameDetailDescription>
+      </GameDetailWrapper>
+    </Wrapper>
   );
 };
 
