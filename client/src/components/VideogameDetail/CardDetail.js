@@ -27,7 +27,7 @@ export const GameDetailTitle = styled.h2`
   font-weight: 300;
   justify-content: center;
   display: flex;
-  color: white;
+  color: var(--color-light);
 `;
 
 export const GameDetailImg = styled.img`
@@ -38,11 +38,13 @@ export const GameDetailImg = styled.img`
 `;
 
 export const GameDetailDescription = styled.p`
-  color: #ffffff;
+  color: var(--color-light);
   font-size: 15px;
   text-align: justify;
   font-weight: 300;
   width: 50vw;
+  padding: 5px;
+  margin-bottom: 15px;
 
   @media (max-width: 800px) {
     width: 80vw;
@@ -68,7 +70,7 @@ export const GameDetailOthers = styled.p`
   padding: 10px;
   margin: 5px;
   border: 1px solid black;
-  color: white;
+  color: var(--color-light);
   background-color: var(--color-bg);
 `;
 
