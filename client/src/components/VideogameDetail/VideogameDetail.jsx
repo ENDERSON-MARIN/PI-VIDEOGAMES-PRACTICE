@@ -27,7 +27,7 @@ const VideogameDetail = () => {
       confirmButtonText: "Yes",
       confirmButtonColor: "green",
       denyButtonText: "Cancel",
-      timer: "3000",
+      // timer: "3000",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteVideogame(id));

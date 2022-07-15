@@ -31,8 +31,8 @@ export const GameDetailTitle = styled.h2`
 `;
 
 export const GameDetailImg = styled.img`
-  width: 640px;
-  height: 400px;
+  width: 90%;
+  height: 500px;
   border-radius: 25px;
   margin: 15px;
 `;
