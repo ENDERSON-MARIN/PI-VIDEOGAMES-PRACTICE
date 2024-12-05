@@ -9,7 +9,7 @@ return (
 
     <section className={Style.card}> 
       <section className={Style.card2}> 
-     <Link to={`/videogames/${id}`}>
+     <Link to={`/videogameDetails/${id}`}>
       <img className={Style.img}src={background_image} alt={name}/>
      </Link>
       

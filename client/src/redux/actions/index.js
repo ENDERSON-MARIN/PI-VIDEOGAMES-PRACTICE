@@ -30,12 +30,10 @@ export function getAllVideogames() {
 }
 
 /* CREATE NEW VIDEOGAME */
-
 export function createVideogame(body) {
   return async function (dispatch) {
     try {
-      const newGame = await axios.post("/videogames", body);
-      console.log(newGame);
+      await axios.post("/videogames", body);
       return dispatch({
         type: CREATE_VIDEOGAME,
       });
@@ -50,7 +48,7 @@ export function createVideogame(body) {
 export function updateVideogame(id, body) {
   return async function (dispatch) {
     try {
-      await axios.put(`/videogame/${id}`, body);
+      await axios.put(`/videogames/${id}`, body);
       return dispatch({
         type: UPDATE_VIDEOGAME,
       });
@@ -65,7 +63,7 @@ export function updateVideogame(id, body) {
 export function deleteVideogame(id) {
   return async function (dispatch) {
     try {
-      await axios.delete(`/videogame/${id}`);
+      await axios.delete(`/videogames/${id}`);
       return dispatch({
         type: DELETE_VIDEOGAME,
       });

@@ -19,7 +19,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.2.3",
-    "sweetalert2": "^11.4.20",
+    "sweetalert2": "^11.4.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

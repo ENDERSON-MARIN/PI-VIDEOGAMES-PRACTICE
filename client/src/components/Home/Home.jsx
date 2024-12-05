@@ -95,7 +95,7 @@ const Home = () => {
                 <select onChange={handleFilterGenre} name="Genres">
                   <option value="Filter by Genres" selected disabled>
                     {" "}
-                    GENRES
+                    FILTER BY GENRES
                   </option>
                   {genres.map((g) => {
                     return (
@@ -108,17 +108,17 @@ const Home = () => {
                 <select onChange={(e) => handleFilterExistence(e)}>
                   <option value="Filterby" selected disabled>
                     {" "}
-                    FILTER{" "}
+                    FILTER BY EXISTENCE{" "}
                   </option>
                   <option value="All">All</option>
-                  <option value="API"> API </option>
-                  <option value="DB">DB </option>
+                  <option value="API">API</option>
+                  <option value="DB">DB</option>
                 </select>
 
                 <select onChange={handleOrderByAlphabetical} name="Genre">
                   <option value="Sortby" selected disabled>
                     {" "}
-                    SORT ORDER{" "}
+                    ORDER BY ALPHABETIC{" "}
                   </option>
                   <option value="A-Z"> A-Z </option>
                   <option value="Z-A"> Z-A </option>
@@ -126,7 +126,7 @@ const Home = () => {
                 <select onChange={handleOrderByRating}>
                   <option value="Rating" selected disabled>
                     {" "}
-                    RATING{" "}
+                    ORDER BY RATING{" "}
                   </option>
                   <option value="Higth">HIGTH⬆</option>
                   <option value="Lower">LOW⬇</option>

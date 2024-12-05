@@ -64,7 +64,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case GET_VIDEOGAMES_BY_ID:
       return {
         ...state,
-        videogamesCopy: payload,
+        videogameDetail: payload,
       };
     case GET_ALL_GENRES:
       return {

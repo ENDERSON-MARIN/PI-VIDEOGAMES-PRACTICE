@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useNavigate , NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Style from "./VideogameForm.module.css";
+
+import Swal from "sweetalert2";
 
 import {
   getVideogamesByGenres,
   getVideogamesById,
   createVideogame,
-  updateVideogame
-
+  updateVideogame,
 } from "../../redux/actions/index";
 
 //--CREATE NEW GAME--//
@@ -17,10 +18,10 @@ const VideogameForm = () => {
   const dispatch = useDispatch();
   const [validator, setValidator] = useState("");
   const { id } = useParams();
-  const videogameUpdate = useSelector((state) => state.copyVideogames);
+  const videogameUpdate = useSelector((state) => state.videogamesCopy);
   const genres = useSelector((state) => state.genres);
   const [updated, setUpdated] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   let Platforms = [
     "PC",
     "PlayStation",
@@ -40,16 +41,7 @@ const VideogameForm = () => {
     "Atari",
     "Genesis",
     "SEGA",
-    "Dreamcast",
-    "3DO",
-    "Jaguar",
-    "Game Gear",
-    "Neo Geo",
-    "PS5",
-    "PS4",
-    "PS3",
-    "PS2",
-    "PS1",
+    "Dreamcast"
   ];
 
   useEffect(() => {
@@ -101,10 +93,24 @@ const VideogameForm = () => {
       if (dataState.name) {
         if (!id) {
           dispatch(createVideogame(dataState));
-          alert("Game created successfully");
+          Swal.fire({
+            title: "Created!",
+            text: "Videogame created successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "green",
+            timer: "3000",
+          });
         } else {
           dispatch(updateVideogame(id, dataState));
-          alert("Game updated successfully");
+          Swal.fire({
+            title: "Updated!",
+            text: "Videogame updated successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "green",
+            timer: "3000",
+          });
         }
       }
       setValidator("");
@@ -118,6 +124,7 @@ const VideogameForm = () => {
         genres: [],
       });
       document.getElementById("form").reset();
+      navigate("/home");
     }
   }
   if (id && videogameUpdate.name && !updated) {
@@ -143,7 +150,7 @@ const VideogameForm = () => {
   };
 
   function handlePlatforms(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     if (e.target.checked) {
       setDataState({
         ...dataState,
@@ -156,9 +163,9 @@ const VideogameForm = () => {
       });
     }
   }
-  
+
   function handleGenres(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     if (e.target.checked) {
       setDataState({
         ...dataState,
@@ -177,17 +184,17 @@ const VideogameForm = () => {
       <div className={Style.btnAlign}>
         <NavLink to="/home">
           <button className={Style.backBtn}>
-            <span className={Style.buttonTop}>BACK HOME</span>
+            <span className={Style.buttonTop}>GO BACK HOME</span>
           </button>
         </NavLink>
       </div>
       {id ? (
         <div className={Style.titleAling}>
-          <h2 className="update">UPDATE GAME</h2>
+          <h2 className="update">UPDATE VIDEOGAME</h2>
         </div>
       ) : (
         <div className={Style.titleAling}>
-          <h2 className="create">CREATE YOUR GAME!</h2>
+          <h2 className="create">CREATE NEW GAME</h2>
         </div>
       )}
 
@@ -199,42 +206,18 @@ const VideogameForm = () => {
         >
           <ul className={Style.noBullet}>
             <li>
-              <label>NAME:</label>
-              <input
-                required
-                type="text"
-                maxlength="15"
-                className={Style.inputFields}
-                name="name"
-                placeholder="Game Name"
-                value={dataState.name}
-                onChange={(e) => handleUpdate(e)}
-              />
-            </li>
-            <li>
-              <label>DESCRIPTION:</label>
-              <input
-                required
-                type="text"
-                maxlength="50"
-                className={Style.inputFields}
-                name="description"
-                placeholder="Description"
-                value={dataState.description}
-                onChange={(e) => handleUpdate(e)}
-              />
-            </li>
-            <li>
-              <label>RELEASED DATE:</label>
-              <input
-                required
-                type="date"
-                className={Style.inputFields}
-                name="released"
-                placeholder="Released date"
-                value={dataState.released}
-                onChange={(e) => handleUpdate(e)}
-              />
+              <label>
+                NAME:
+                <input
+                  required
+                  type="text"
+                  className={Style.inputFields}
+                  name="name"
+                  placeholder="Game Name"
+                  value={dataState.name}
+                  onChange={(e) => handleUpdate(e)}
+                />
+              </label>
             </li>
 
             <li>
@@ -249,6 +232,20 @@ const VideogameForm = () => {
                 onChange={(e) => handleUpdate(e)}
               />
             </li>
+
+            <li>
+              <label>RELEASED DATE:</label>
+              <input
+                required
+                type="date"
+                className={Style.inputFields}
+                name="released"
+                placeholder="Released date"
+                value={dataState.released}
+                onChange={(e) => handleUpdate(e)}
+              />
+            </li>
+
             <li>
               <label>RATING:{dataState.rating}</label>
               <input
@@ -257,11 +254,27 @@ const VideogameForm = () => {
                 className={Style.inputFields}
                 max="5"
                 min="1"
+                step="0.01"
                 name="rating"
                 value={dataState.rating}
                 onChange={(e) => handleUpdate(e)}
               />
             </li>
+
+            <li>
+              <label>DESCRIPTION:</label>
+              <textarea
+                required
+                rows="6"
+                cols="30"
+                className={Style.inputFields}
+                name="description"
+                placeholder="Description videogame"
+                value={dataState.description}
+                onChange={(e) => handleUpdate(e)}
+              ></textarea>
+            </li>
+
             <li>
               <label className={Style.container} id="genres">
                 {" "}
@@ -316,7 +329,7 @@ const VideogameForm = () => {
                 <span></span>
                 <span></span>
                 <span></span>
-                <span></span>CREATE NEW VIDEOGAME
+                <span></span>SUBMIT VIDEOGAME!
               </button>
             </li>
           </ul>

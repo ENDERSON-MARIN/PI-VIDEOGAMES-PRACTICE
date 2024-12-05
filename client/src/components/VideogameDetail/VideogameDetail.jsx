@@ -7,51 +7,65 @@ import { deleteVideogame, getVideogamesById } from "../../redux/actions/index";
 
 import CardDetail from "./CardDetail.jsx";
 
+import Swal from "sweetalert2";
+
 const VideogameDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const videogameDetails = useSelector((state) => state.videogameDetail);
+  const gameDetails = useSelector((state) => state.videogameDetail);
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getVideogamesById(id));
-    // console.log(id)
+    console.log(id);
   }, [dispatch, id]);
 
   const handleDelete = () => {
-    dispatch(deleteVideogame(id));
-    alert("Game deleted successfully");
-    // console.log(id)
-    navigate("/home");
+    Swal.fire({
+      title: "Do you want to delete the video game?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      confirmButtonColor: "green",
+      denyButtonText: "Cancel",
+      timer: "3000",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteVideogame(id));
+        Swal.fire("Video game successfully removed!", "", "success");
+        navigate("/home");
+      } else if (result.isDenied) {
+        //Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
 
-//   console.log(videogameDetails);
+  //console.log(gameDetails);
 
   return (
     <div>
       <div className={Style.btncontainer}>
-        {typeof videogameDetails.id === "string" && (
-          <button className={Style.backBtn} onClick={handleDelete}>
-            {" "}
-            <span className={Style.buttonTop}>DELETE</span>
-          </button>
-        )}
         <NavLink to="/home">
           <button className={Style.backBtn}>
-            <span className={Style.buttonTop}>BACK HOME</span>
+            <span className={Style.buttonTop}>GO BACK HOME</span>
           </button>
         </NavLink>
-        {typeof videogameDetails.id === "string" && (
-          <NavLink to={`/videogames/${id}`}>
+        {typeof gameDetails.id === "string" && (
+          <NavLink to={`/videogameUpdate/${id}`}>
             <button className={Style.backBtn}>
-              <span className={Style.buttonTop}>UPDATE</span>
+              <span className={Style.buttonTop}>UPDATE VIDEOGAME</span>
             </button>
           </NavLink>
+        )}
+        {typeof gameDetails.id === "string" && (
+          <button className={Style.backBtn} onClick={handleDelete}>
+            {" "}
+            <span className={Style.buttonTop}>DELETE VIDEOGAME</span>
+          </button>
         )}
       </div>
 
       <div className={Style.container}>
-        <CardDetail game={videogameDetails} />
+        <CardDetail game={gameDetails} />
       </div>
     </div>
   );
